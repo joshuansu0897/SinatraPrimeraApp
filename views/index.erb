@@ -6,7 +6,6 @@
     <link href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css' rel='stylesheet' />
   </head>
   <body class='container'>
-    <h1><%= @titulo%></h1>
     <form action='cast' method='post'>
       <ul class='unstyled'>
         <% Choices.each do |id, text| %>
@@ -18,7 +17,7 @@
           </li>
         <% end %>
       </ul>
-      <button type='submit' class='btn btn-primary'>Cast this vote!</button>
+      <button type='submit' class='btn btn-primary'>Votar</button>
     </form>
   </body>
 </html>
