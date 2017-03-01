@@ -21,6 +21,13 @@
               <a class="navbar-brand" href="#">Prueba Sinatra</a>
               <li><a href="/">Inicio</a></li>
               <li><a href="/results">Votos</a></li>
+              <% if login? %>
+                <li><a>Hola <%= username %></a></li>
+                <li><a href="/logout">Logout</a></a></li>
+              <%else%>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">SignUp</a></li>
+              <%end%>
             </ul>
           </div>
         </div>
