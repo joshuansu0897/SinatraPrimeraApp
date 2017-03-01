@@ -79,15 +79,21 @@ end
 post "/signup" do
   password_salt = BCrypt::Engine.generate_salt
   password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
+  password_check = BCrypt::Engine.hash_secret(params[:checkpassword], password_salt)
 
   #ideally this would be saved into a database, hash used just for sample
-  userTable[params[:username]] = {
-    :salt => password_salt,
-    :passwordhash => password_hash
-  }
+  if :password == :checkpassword
+    userTable[params[:username]] = {
+      :salt => password_salt,
+      :passwordhash => password_hash
+    }
 
-  session[:username] = params[:username]
-  redirect "/"
+    session[:username] = params[:username]
+    redirect "/"
+  else
+    @titulo = 'escribe bien la contra morro'
+    erb :signup
+  end
 end
 
 get '/login' do
