@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'rubygems'
 require 'bcrypt'
+require 'pony'
 require 'yaml/store'
 
 get '/' do
@@ -80,9 +81,17 @@ post "/signup" do
   password_salt = BCrypt::Engine.generate_salt
   password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
   password_check = BCrypt::Engine.hash_secret(params[:checkpassword], password_salt)
+  email = params[:email]
+  checkemail = params[:checkemail]
 
   #ideally this would be saved into a database, hash used just for sample
-  if password_hash == password_check
+  if password_hash == password_check and email == checkemail
+    Pony.mail :to => email,
+          :from => 'nathanaeljnsu0897@gmail.com',
+          :subject => 'primer intento de correo',
+          :body => erb(:email),
+          :via => :sendmail
+          
     userTable[params[:username]] = {
       :salt => password_salt,
       :passwordhash => password_hash
@@ -91,7 +100,7 @@ post "/signup" do
     session[:username] = params[:username]
     redirect "/"
   else
-    @titulo = 'escribe bien la contra morro'
+    @titulo = 'escribe bien la contra morro o el correo'
     erb :signup
   end
 end
