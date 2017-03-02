@@ -1,26 +1,29 @@
-<form action="/signup" method="post" class="form-horizontal">
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="username">Username:</label>
-    <div class="col-md-4">
-      <input class="form-control" required placeholder="Username" autofocus=""type="text" name="username">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="password">Password:</label>
-    <div class="col-md-4">
-      <input class="form-control" required placeholder="Password" type="password" name="password">
-    </div>
-  </div>
-  <div class="form-group">
-    <label class="col-md-4 control-label" for="checkpassword">Check Password:</label>
-    <div class="col-md-4">
-      <input class="form-control" type="password" placeholder="Password again" name="checkpassword" required>
-    </div>
-  </div>
-  <div class="form-group">
-      <div class="col-md-4 col-md-offset-6">
-        <button class="btn btn-danger" type="reset">Clear</button>
-        <button type="submit" class="btn btn-info">Sign Up</button>
+
+<body class='container'>
+  <form action="/signup" method="post" class="form-horizontal">
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="username">Username:</label>
+      <div class="col-md-4">
+        <input class="form-control" required placeholder="Username" autofocus=""type="text" name="username">
       </div>
-  </div>
-</form>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="password">Password:</label>
+      <div class="col-md-4">
+        <input class="form-control" required placeholder="Password" type="password" name="password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="checkpassword">Check Password:</label>
+      <div class="col-md-4">
+        <input class="form-control" type="password" placeholder="Password again" name="checkpassword" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-4 col-md-offset-6">        
+        <input type="submit" class="btn btn-info" value="Sign Up">
+        <input type="reset" class="btn btn-danger" value="Clear">
+      </div>
+    </div>
+  </form>
+</body>

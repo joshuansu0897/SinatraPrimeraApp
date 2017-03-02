@@ -82,7 +82,7 @@ post "/signup" do
   password_check = BCrypt::Engine.hash_secret(params[:checkpassword], password_salt)
 
   #ideally this would be saved into a database, hash used just for sample
-  if :password == :checkpassword
+  if password_hash == password_check
     userTable[params[:username]] = {
       :salt => password_salt,
       :passwordhash => password_hash
