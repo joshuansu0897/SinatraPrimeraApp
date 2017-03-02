@@ -109,7 +109,8 @@ post "/login" do
       redirect "/"
     end
   end
-  erb :error
+  @titulo = 'Datos mal morro, ponte vergas'
+  erb :login
 end
 
 get "/logout" do
