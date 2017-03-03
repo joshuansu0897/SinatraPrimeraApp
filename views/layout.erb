@@ -22,7 +22,7 @@
               <li><a href="/">Inicio</a></li>
               <li><a href="/results">Votos</a></li>
               <% if login? %>
-                <li><a>Hola <%= username %></a></li>
+                <li><a href="/perfil">Hola <%= username %></a></li>
                 <li><a href="/logout">Logout</a></a></li>
               <%else%>
                 <li><a href="/login">Login</a></li>

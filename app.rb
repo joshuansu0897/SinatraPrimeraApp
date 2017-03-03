@@ -81,17 +81,14 @@ post "/signup" do
   password_salt = BCrypt::Engine.generate_salt
   password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
   password_check = BCrypt::Engine.hash_secret(params[:checkpassword], password_salt)
-  email = params[:email]
-  checkemail = params[:checkemail]
 
   #ideally this would be saved into a database, hash used just for sample
-  if password_hash == password_check and email == checkemail
-    Pony.mail :to => email,
+  if password_hash == password_check and params[:email] == params[:checkemail]
+    Pony.mail :to => params[:email],
           :from => 'nathanaeljnsu0897@gmail.com',
           :subject => 'primer intento de correo',
           :body => erb(:email),
           :via => :sendmail
-          
     userTable[params[:username]] = {
       :salt => password_salt,
       :passwordhash => password_hash
@@ -125,6 +122,11 @@ end
 get "/logout" do
   session[:username] = nil
   redirect "/"
+end
+
+get "/perfil" do
+  @titulo = "Hola #{username}"
+  erb :perfil
 end
 
 #post '/cast' do
