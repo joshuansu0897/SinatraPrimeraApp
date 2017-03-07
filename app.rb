@@ -53,49 +53,13 @@ end
 
 enable :sessions
 
-userTable = {}
-
-helpers do
-
-  def login?
-    if session[:username].nil?
-      erb :login
-      return false
-    else
-      return true
-    end
-  end
-
-  def username
-    return session[:username]
-  end
-
-end
-
 get "/signup" do
   @titulo = 'Pon la contra y el usuario morro'
   erb :signup
 end
 
 post "/signup" do
-  password_salt = BCrypt::Engine.generate_salt
-  password_hash = BCrypt::Engine.hash_secret(params[:password], password_salt)
-  password_check = BCrypt::Engine.hash_secret(params[:checkpassword], password_salt)
-
-  #ideally this would be saved into a database, hash used just for sample
-  if password_hash == password_check and params[:email] == params[:checkemail]
-    Pony.mail :to => params[:email],
-          :from => 'nathanaeljnsu0897@gmail.com',
-          :subject => 'primer intento de correo',
-          :body => erb(:email),
-          :via => :sendmail
-    userTable[params[:username]] = {
-      :salt => password_salt,
-      :passwordhash => password_hash
-    }
-
-    session[:username] = params[:username]
-    redirect "/"
+  if !true
   else
     @titulo = 'escribe bien la contra morro o el correo'
     erb :signup
@@ -108,13 +72,6 @@ get '/login' do
 end
 
 post "/login" do
-  if userTable.has_key?(params[:username])
-    user = userTable[params[:username]]
-    if user[:passwordhash] == BCrypt::Engine.hash_secret(params[:password], user[:salt])
-      session[:username] = params[:username]
-      redirect "/"
-    end
-  end
   @titulo = 'Datos mal morro, ponte vergas'
   erb :login
 end
